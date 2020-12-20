@@ -112,7 +112,7 @@ static void add_to_history(const char * cmd){
 		int i;
 		free(cmd_history[0]);
 			
-		for(i=1; i < cmd_history_count; i++)
+		for(i=1; i <= cmd_history_count; i++)
 			cmd_history[i-1] = cmd_history[i];
 		cmd_history_count--;
 	}
@@ -144,7 +144,7 @@ static void run_from_history(const char * cmd){
 
 static void list_history(){
 	int i;
-	for(i=cmd_history_count; i >=0 ; i--){
+	for(i=cmd_history_count-1; i >=0 ; i--){
 		printf("%i %s\n", i+1, cmd_history[i]);
 	}
 }
@@ -192,7 +192,7 @@ int main(int argc, char *argv[]){
 	int inter = 0; 
 	while(1){
 		if(!inter)
-			printf("mysh > ");
+			printf("myshell > ");
 		if(getline(&line, &line_size, stdin) == -1){	
 			if(errno == EINTR){
 				clearerr(stdin);
